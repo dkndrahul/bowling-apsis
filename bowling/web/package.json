@@ -1,0 +1,17 @@
+{
+  "name": "bowling",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "~3.4.4",
+    "lodash": "^2.4.1",
+    "q": "~0.9.7"
+  },
+  "repository": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}

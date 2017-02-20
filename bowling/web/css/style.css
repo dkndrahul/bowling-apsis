@@ -1,0 +1,53 @@
+body {
+	text-align: center;
+}
+
+.apMarginBtn{
+	    margin-top: 15px;
+}
+
+.active-player {
+	color: #000000;
+	font-weight: 900;
+}
+.error {
+	color: red;
+}
+
+
+.apPositionBtnText {
+	display: inline-flex;
+	margin-bottom: 2%;
+
+}
+
+.apBtnAlign {
+
+	margin-left: 4%
+
+}
+
+.apPlayerName {
+	width:10%
+}
+
+.apBoard {
+	width:80%
+}
+
+.apBoardFrameChance {
+	width:100px
+}
+
+.apScoreCountWidth {
+	width:100px
+}
+
+.apTotalScore {
+
+	width:10%
+
+}
+
+
+td {  width:60px;text-align:center;}

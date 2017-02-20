@@ -1,0 +1,120 @@
+<div class="container">
+    <h2>Bowling game</h2>
+
+    <div id="adduser" ng-show="game.status()=='new'|| game.status()=='ready'">
+
+
+        <h3> Adding player to the party</h3>
+
+        <form name="myForm">
+            <label>Name:</label>
+
+            <input required name='input' type="text" class="form-control" ng-model="Name" ng-minlength="1"
+                   ng-pattern="/^\w+$/" placeholder="Enter a name here">
+
+            <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+            <span class="error" ng-show="myForm.input.$error.pattern">Single word only!</span>
+
+            <div class="apMarginBtn">
+
+                <button id="add_user_btn" ng-show="myForm.input.$valid" class="btn btn-default"
+                        ng-click="game.addPlayer(Name)">Add Player
+                </button>
+
+            </div>
+        </form>
+
+        <hr>
+
+    </div>
+
+    <!-- Section to define and add users -->
+    <div ng-show="game.status()!='new'">
+
+        <h1> This is Frame {{ game.currentPlayer().currentFrame() +1 }}
+            - {{ game.currentPlayer().currentChance()+1}} /
+            {{ game.currentPlayer().numberOfChanceInCurrentFrame()}}
+
+        </h1>
+
+        <p> Hello {{game.currentPlayer().name}}! , this is your turn</p>
+
+        <p> {{ game.currentPlayer().standingPin()}} pins are standing up</p>
+
+        <p> Enter the number of pin you thrown </p>
+
+
+        <div class="apPositionBtnText">
+
+            <input class="form-control col-md-8" ng-model="pin" type="number" min="0"
+                   max="{{game.currentPlayer().standingPin()}}"/>
+
+
+            <span class="error" ng-show="myForm.list.$error.required">
+
+                Required!
+
+            </span>
+
+            <span class="error" ng-show="myForm.list.$error.number">
+
+                Not valid number!
+
+            </span>
+
+            <button class="btn btn-default apBtnAlign col-md-10" id="play-btn"
+                    ng-click="game.roll(pin);">Go
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover" border=1 width=100%>
+        <tr ng-repeat="player in game.players">
+
+            <td class="apPlayerName">
+
+                <h2 ng-class="'' || isActivePlayer(player) &&  'active-player'">{{player.name}}</h2>
+
+            </td>
+
+            <td class="apBoard">
+
+                <table border=1 width=100%>
+                    <tr>
+                        <td class="apBoardFrameChance" colspan="{{player.numberOfChanceInFrame(i)}}"
+
+                            ng-repeat="i in game.stages track by $index">{{i+1}}
+
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td class="apScoreCountWidth" ng-repeat="s in player.scoreString() track by $index"> {{ s }}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="{{player.numberOfChanceInFrame(i)}}" ng-repeat="i in game.stages track by $index">
+                            <div> {{player.frameScore(i)}}</div>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+
+            <td class="apTotalScore">
+                <div id="{{ 'score' + player.name}}">{{player.score()}}</div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="apMarginBtn">
+
+        <a ng-click="game.reset()" href="#" class="btn btn-default">Reset</a>
+        <button ng-click="saveGameScore()" class="btn btn-success">Save</button>
+
+    </div>
+
+
+</div>
